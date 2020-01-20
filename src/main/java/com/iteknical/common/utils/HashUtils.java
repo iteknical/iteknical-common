@@ -1,4 +1,4 @@
-package utils;
+package com.iteknical.common.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
