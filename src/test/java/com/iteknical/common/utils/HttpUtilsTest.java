@@ -19,7 +19,7 @@ public class HttpUtilsTest {
         Assert.assertNotNull(responseString);
     }
 
-    @Test
+    // @Test
     public void test2Get() throws Exception {
         HttpResponse httpResponse = HttpUtils.doGet("http://localhost:8081", "/fusion-user/api/checkUserMark", null,
             ImmutableMap.of("userMark", "15696756582@163.com"));
@@ -29,7 +29,7 @@ public class HttpUtilsTest {
         Assert.assertNotNull(responseString);
     }
 
-    @Test
+    // @Test
     public void test3Post() throws Exception {
         HttpResponse httpResponse = HttpUtils.doPost("http://localhost:8081", "/fusion-user/api/login",
             ImmutableMap.of("Content-Type", "application/json"),

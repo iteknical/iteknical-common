@@ -6,6 +6,7 @@ package com.iteknical.common.utils;
  * @Time: 上午11:30.
  */
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
@@ -84,14 +85,18 @@ public class HttpUtils {
      * @throws Exception
      */
     public static HttpResponse doGet(String host, String path, Map<String, String> headers,
-        Map<String, String> queries) throws Exception {
+        Map<String, String> queries) {
         HttpGet request = new HttpGet(buildUrl(host, path, queries));
         if (MapUtils.isNotEmpty(headers)) {
             for (Map.Entry<String, String> e : headers.entrySet()) {
                 request.addHeader(e.getKey(), e.getValue());
             }
         }
-        return httpClient.execute(request);
+        try {
+            return httpClient.execute(request);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -106,7 +111,7 @@ public class HttpUtils {
      * @throws Exception
      */
     public static HttpResponse doPost(String host, String path, Map<String, String> headers,
-        Map<String, String> queries, Map<String, String> bodies) throws Exception {
+        Map<String, String> queries, Map<String, String> bodies) {
         HttpPost request = new HttpPost(buildUrl(host, path, queries));
         if (MapUtils.isNotEmpty(headers)) {
             for (Map.Entry<String, String> e : headers.entrySet()) {
@@ -118,11 +123,20 @@ public class HttpUtils {
             for (String key : bodies.keySet()) {
                 nameValuePairList.add(new BasicNameValuePair(key, bodies.get(key)));
             }
-            UrlEncodedFormEntity formEntity = new UrlEncodedFormEntity(nameValuePairList, ENCODE);
+            UrlEncodedFormEntity formEntity = null;
+            try {
+                formEntity = new UrlEncodedFormEntity(nameValuePairList, ENCODE);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
             formEntity.setContentType(FORM_CONTENT_TYPE);
             request.setEntity(formEntity);
         }
-        return httpClient.execute(request);
+        try {
+            return httpClient.execute(request);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -137,7 +151,7 @@ public class HttpUtils {
      * @throws Exception
      */
     public static HttpResponse doPost(String host, String path, Map<String, String> headers,
-        Map<String, String> queries, String body) throws Exception {
+        Map<String, String> queries, String body) {
         HttpPost request = new HttpPost(buildUrl(host, path, queries));
         if (MapUtils.isNotEmpty(headers)) {
             for (Map.Entry<String, String> e : headers.entrySet()) {
@@ -148,7 +162,11 @@ public class HttpUtils {
             request.setEntity(new StringEntity(body, ENCODE));
 
         }
-        return httpClient.execute(request);
+        try {
+            return httpClient.execute(request);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -163,7 +181,7 @@ public class HttpUtils {
      * @throws Exception
      */
     public static HttpResponse doPost(String host, String path, Map<String, String> headers,
-        Map<String, String> queries, byte[] body) throws Exception {
+        Map<String, String> queries, byte[] body) {
         HttpPost request = new HttpPost(buildUrl(host, path, queries));
         if (MapUtils.isNotEmpty(headers)) {
             for (Map.Entry<String, String> e : headers.entrySet()) {
@@ -173,12 +191,14 @@ public class HttpUtils {
         if (body != null) {
             request.setEntity(new ByteArrayEntity(body));
         }
-        return httpClient.execute(request);
+        try {
+            return httpClient.execute(request);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static String buildUrl(String host, String path, Map<String, String> queries)
-        throws UnsupportedEncodingException {
-
+    private static String buildUrl(String host, String path, Map<String, String> queries) {
         StringBuilder sbUrl = new StringBuilder();
         sbUrl.append(host);
 
@@ -199,7 +219,11 @@ public class HttpUtils {
                     sbQuery.append(query.getKey());
                     if (StringUtils.isNotBlank(query.getValue())) {
                         sbQuery.append("=");
-                        sbQuery.append(URLEncoder.encode(query.getValue(), ENCODE));
+                        try {
+                            sbQuery.append(URLEncoder.encode(query.getValue(), ENCODE));
+                        } catch (UnsupportedEncodingException e) {
+                            throw new RuntimeException(e);
+                        }
                     }
                 }
             }
