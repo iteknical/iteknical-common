@@ -146,6 +146,7 @@ public class HttpUtils {
         }
         if (StringUtils.isNotBlank(body)) {
             request.setEntity(new StringEntity(body, ENCODE));
+
         }
         return httpClient.execute(request);
     }
