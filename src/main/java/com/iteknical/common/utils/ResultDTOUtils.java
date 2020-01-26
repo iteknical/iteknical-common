@@ -1,6 +1,6 @@
 package com.iteknical.common.utils;
 
-import com.iteknical.common.entity.ResultDTO;
+import com.iteknical.common.dto.ResultDTO;
 
 /**
  * @author Tony

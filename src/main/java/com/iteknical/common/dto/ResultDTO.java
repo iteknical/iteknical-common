@@ -1,6 +1,6 @@
-package com.iteknical.common.entity;
+package com.iteknical.common.dto;
 
-import com.iteknical.common.entity.constant.ResultCode;
+import com.iteknical.common.dto.constant.ResultCode;
 
 /**
  * 返回值
