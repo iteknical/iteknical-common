@@ -1,4 +1,4 @@
-package com.iteknical.common.entity;
+package com.iteknical.common.entity.constant;
 
 /**
  * 返回参数

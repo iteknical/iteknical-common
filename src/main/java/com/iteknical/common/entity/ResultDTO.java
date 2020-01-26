@@ -1,5 +1,7 @@
 package com.iteknical.common.entity;
 
+import com.iteknical.common.entity.constant.ResultCode;
+
 /**
  * 返回值
  * 
@@ -11,9 +13,9 @@ public class ResultDTO<T> {
 
     /** 是否调用以及过参数校验 */
     private boolean success = false;
-    /** 业务code，见{@linkplain com.iteknical.hce.common.constant.ResultCode} */
+    /** 业务code，见{@link ResultCode} */
     private int     code;
-    /** 业务消息，见{@linkplain com.iteknical.hce.common.constant.ResultCode} */
+    /** 业务消息，见{@link ResultCode} */
     private String  message;
     /** 返回值 */
     private T       data;
