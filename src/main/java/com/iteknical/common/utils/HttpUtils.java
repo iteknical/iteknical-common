@@ -64,6 +64,12 @@ public class HttpUtils {
             .register("https", socketFactory != null ? socketFactory : PlainConnectionSocketFactory.getSocketFactory())
             .build();
 
+        // for proxy debug
+        // HttpHost proxy = new HttpHost("localhost", 8888);
+        // RequestConfig defaultRequestConfig =
+        // RequestConfig.custom().setProxy(proxy).setSocketTimeout(5000).setConnectTimeout(5000)
+        // .setConnectionRequestTimeout(5000).build();
+
         RequestConfig defaultRequestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000)
             .setConnectionRequestTimeout(5000).build();
 
