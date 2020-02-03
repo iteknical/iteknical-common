@@ -16,7 +16,9 @@ import javax.net.ssl.SSLContext;
 
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -35,6 +37,7 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContextBuilder;
+import org.apache.http.util.EntityUtils;
 
 import com.google.common.collect.Lists;
 
@@ -239,6 +242,25 @@ public class HttpUtils {
         }
 
         return sbUrl.toString();
+    }
+
+    public static String checkResponseAndGetResult(HttpResponse httpResponse) {
+        if (httpResponse == null) {
+            throw new RuntimeException();
+        }
+        if (httpResponse.getStatusLine() == null) {
+            throw new RuntimeException();
+        }
+        if (HttpStatus.SC_OK != httpResponse.getStatusLine().getStatusCode()) {
+            throw new RuntimeException();
+        }
+
+        HttpEntity entity = httpResponse.getEntity();
+        try {
+            return EntityUtils.toString(entity, ENCODE);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }
