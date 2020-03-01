@@ -12,11 +12,6 @@ public interface ResultCode {
     int    SUCCESS                    = 1;
     String MSG_SUCCESS                = "success";
 
-    // 共性的业务code
-    /** 用户未登录 */
-    int    USER_NOT_SIGN_IN           = 1101;
-    String MSG_USER_NOT_SIGN_IN       = "user not sign in";
-
     // 一些可能共性的异常code 9000~9999
     /** 接口已下线 */
     int    INTERFACE_OFFLINE          = 9000;
