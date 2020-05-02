@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -23,7 +24,7 @@ import com.google.common.hash.Hashing;
 public class FileUtils {
     /**
      * 读取文件所有内容
-     * 
+     *
      * @param file
      * @return
      */
@@ -38,7 +39,7 @@ public class FileUtils {
 
     /**
      * 删除文件或空目录
-     * 
+     *
      * @param file
      */
     public static void deleteIfExists(String file) {
@@ -100,7 +101,7 @@ public class FileUtils {
      * <p>
      * 有异常时抛出异常
      * </p>
-     * 
+     *
      * @param url
      * @param file
      */
@@ -116,7 +117,7 @@ public class FileUtils {
 
     /**
      * 下载文件，失败在优先次数内重试
-     * 
+     *
      * @param url
      * @param file
      * @param maxRetry
@@ -136,7 +137,7 @@ public class FileUtils {
 
     /**
      * file check
-     * 
+     *
      * @param file
      * @param sha256
      * @return
@@ -150,4 +151,21 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * write file
+     * 
+     * @param file
+     * @param content
+     */
+    public static void writeStringToFile(String file, String content) {
+        try {
+            File parentDir = new File(new File(file).getParent());
+            parentDir.mkdir();
+            org.apache.commons.io.FileUtils.writeStringToFile(new File(file), content, Charset.forName("utf-8"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }
