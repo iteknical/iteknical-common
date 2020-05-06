@@ -168,4 +168,17 @@ public class FileUtils {
         }
     }
 
+    /**
+     * read file
+     * 
+     * @param file
+     */
+    public static String readFileToString(String file) {
+        try {
+            return org.apache.commons.io.FileUtils.readFileToString(new File(file), Charset.forName("utf-8"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

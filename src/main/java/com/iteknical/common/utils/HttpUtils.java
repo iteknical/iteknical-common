@@ -73,8 +73,8 @@ public class HttpUtils {
         // RequestConfig.custom().setProxy(proxy).setSocketTimeout(5000).setConnectTimeout(5000)
         // .setConnectionRequestTimeout(5000).build();
 
-        RequestConfig defaultRequestConfig = RequestConfig.custom().setSocketTimeout(5000).setConnectTimeout(5000)
-            .setConnectionRequestTimeout(5000).build();
+        RequestConfig defaultRequestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000)
+            .setConnectionRequestTimeout(10000).build();
 
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
         cm.setMaxTotal(200);
