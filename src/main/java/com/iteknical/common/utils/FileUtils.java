@@ -181,4 +181,16 @@ public class FileUtils {
         }
     }
 
+    /**
+     * 清空目录下所有文件
+     * 
+     * @param file
+     */
+    public static void cleanDirectory(String file) {
+        try {
+            org.apache.commons.io.FileUtils.cleanDirectory(new File(file));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
