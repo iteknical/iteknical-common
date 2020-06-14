@@ -1,5 +1,6 @@
 package com.iteknical.common.dto.constant;
 
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -45,4 +46,12 @@ public interface ResultCode {
                     .build())
             .build();
 
+    public static String translateMessage(String message, List<Map<Locale, Map<String, String>>> translationMapList) {
+        for (Map<Locale, Map<String, String>> translationMap : translationMapList) {
+            if (translationMap.get(Locale.CHINA).containsKey(message)) {
+                return translationMap.get(Locale.CHINA).get(message);
+            }
+        }
+        return message;
+    }
 }
