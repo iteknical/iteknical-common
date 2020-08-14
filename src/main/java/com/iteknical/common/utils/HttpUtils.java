@@ -39,6 +39,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 /**
@@ -244,14 +245,14 @@ public class HttpUtils {
         return sbUrl.toString();
     }
 
-    public static String checkResponseAndGetResult(HttpResponse httpResponse) {
+    public static String checkResponseAndGetResult(HttpResponse httpResponse, List<Integer> statusList) {
         if (httpResponse == null) {
             throw new RuntimeException();
         }
         if (httpResponse.getStatusLine() == null) {
             throw new RuntimeException();
         }
-        if (HttpStatus.SC_OK != httpResponse.getStatusLine().getStatusCode()) {
+        if (!statusList.contains(httpResponse.getStatusLine().getStatusCode())) {
             throw new RuntimeException();
         }
 
@@ -261,6 +262,10 @@ public class HttpUtils {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String checkResponseAndGetResult(HttpResponse httpResponse) {
+        return checkResponseAndGetResult(httpResponse, ImmutableList.of(HttpStatus.SC_OK));
     }
 
 }
