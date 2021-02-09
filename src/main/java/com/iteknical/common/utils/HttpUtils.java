@@ -78,8 +78,8 @@ public class HttpUtils {
             .setConnectionRequestTimeout(10000).build();
 
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
-        cm.setMaxTotal(200);
-        cm.setDefaultMaxPerRoute(200);
+        cm.setMaxTotal(500);
+        cm.setDefaultMaxPerRoute(250);
         httpClient =
             HttpClients.custom().setConnectionManager(cm).setDefaultRequestConfig(defaultRequestConfig).build();
     }
