@@ -47,11 +47,11 @@ import com.google.common.collect.Lists;
  */
 public class HttpUtils {
     /** urlEncode编码 */
-    private static final String        ENCODE            = "utf-8";
+    private static final String              ENCODE            = "utf-8";
 
-    private static final String        FORM_CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";
+    private static final String              FORM_CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";
 
-    private static CloseableHttpClient httpClient;
+    private static final CloseableHttpClient HTTP_CLIENT;
 
     static {
         SSLConnectionSocketFactory socketFactory = null;
@@ -80,7 +80,7 @@ public class HttpUtils {
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
         cm.setMaxTotal(500);
         cm.setDefaultMaxPerRoute(250);
-        httpClient =
+        HTTP_CLIENT =
             HttpClients.custom().setConnectionManager(cm).setDefaultRequestConfig(defaultRequestConfig).build();
     }
 
@@ -103,7 +103,7 @@ public class HttpUtils {
             }
         }
         try {
-            return httpClient.execute(request);
+            return HTTP_CLIENT.execute(request);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -143,7 +143,7 @@ public class HttpUtils {
             request.setEntity(formEntity);
         }
         try {
-            return httpClient.execute(request);
+            return HTTP_CLIENT.execute(request);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -173,7 +173,7 @@ public class HttpUtils {
 
         }
         try {
-            return httpClient.execute(request);
+            return HTTP_CLIENT.execute(request);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -202,7 +202,7 @@ public class HttpUtils {
             request.setEntity(new ByteArrayEntity(body));
         }
         try {
-            return httpClient.execute(request);
+            return HTTP_CLIENT.execute(request);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
