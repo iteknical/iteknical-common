@@ -1,5 +1,6 @@
 package com.iteknical.common.utils.exception;
 
+@Deprecated
 public class BaseException extends RuntimeException {
     private int    code;
     private String message;
