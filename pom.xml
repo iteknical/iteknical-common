@@ -96,7 +96,7 @@
         <repository>
             <id>github</id>
             <name>GitHub iteknical Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/iteknical/itkenical-common</url>
+            <url>https://maven.pkg.github.com/iteknical/iteknical-common</url>
         </repository>
     </distributionManagement>
 </project>
