@@ -21,6 +21,7 @@ import com.google.common.hash.Hashing;
 /**
  * @author Tony
  */
+@Deprecated
 public class FileUtils {
     /**
      * 读取文件所有内容

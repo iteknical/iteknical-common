@@ -11,8 +11,8 @@ import com.google.common.collect.Maps;
  * @author Tony
  */
 public class RestUtils {
-    private static final String ENCODE = "utf-8";
 
+    @Deprecated
     public static String doGet(String host, String path, Map<String, String> headers,
         Map<String, String> queries) {
         HttpResponse httpResponse = HttpUtils.doGet(host, path, headers, queries);

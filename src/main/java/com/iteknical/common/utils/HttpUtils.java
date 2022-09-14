@@ -47,9 +47,7 @@ import com.google.common.collect.Lists;
  */
 public class HttpUtils {
     /** urlEncode编码 */
-    private static final String              ENCODE            = "utf-8";
-
-    private static final String              FORM_CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";
+    private static final String              ENCODE = "utf-8";
 
     private static final CloseableHttpClient HTTP_CLIENT;
 
@@ -108,6 +106,8 @@ public class HttpUtils {
             throw new RuntimeException(e);
         }
     }
+
+    private static final String FORM_CONTENT_TYPE = "application/x-www-form-urlencoded; charset=UTF-8";
 
     /**
      * Post form
