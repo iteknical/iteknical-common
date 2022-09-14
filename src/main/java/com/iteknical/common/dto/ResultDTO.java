@@ -9,6 +9,7 @@ import com.iteknical.common.dto.constant.ResultCode;
  *
  * @param <T>
  */
+@Deprecated
 public class ResultDTO<T> {
 
     /** 是否调用以及过参数校验 */
