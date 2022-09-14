@@ -12,6 +12,7 @@ import com.google.common.collect.ImmutableMap;
  * @author 15272
  *
  */
+@Deprecated
 public interface ResultCode {
 
     /** 成功 */
