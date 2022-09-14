@@ -1,4 +1,4 @@
-package com.iteknical.common.anno;
+package com.iteknical.common.valid;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -6,12 +6,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * @author wangshenxiang
+ * @author wenyuan.ww
  */
-@Deprecated
 @Target(ElementType.PARAMETER)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface MyValid {
-
-    Class<?>[] value() default {};
+public @interface ParamValidation {
+    Class<?>[] groups() default {};
 }
