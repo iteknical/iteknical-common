@@ -1,5 +1,10 @@
 package com.iteknical.common.exp;
 
+import java.util.Locale;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+
 /**
  * 异常码
  */
@@ -13,13 +18,22 @@ public interface Code {
      */
 
     /** 成功 */
-    int SUCCESS           = 0;
+    int                               SUCCESS           = 0;
 
     /** 入参无效 */
-    int PARAMETER_INVALID = 10101;
+    int                               PARAMETER_INVALID = 10101;
     /** 上锁错误 */
-    int LOCK_FAILED       = 10201;
+    int                               LOCK_FAILED       = 10201;
 
     /** 未预期错误 */
-    int UNEXPECTED_ERROR  = 90000;
+    int                               UNEXPECTED_ERROR  = 90000;
+
+    Map<Locale, Map<Integer, String>> TRANSLATION_MAP   = ImmutableMap.<Locale, Map<Integer, String>>builder()
+        .put(Locale.SIMPLIFIED_CHINESE, ImmutableMap.<Integer, String>builder()
+            .put(10101, "参数非法")
+            .put(10201, "上锁错误")
+            .put(90000, "系统异常")
+            .build())
+        .build();
+
 }
