@@ -3,7 +3,7 @@ package com.iteknical.common.exp;
 /**
  * 异常码
  */
-public class Code {
+public interface Code {
     /*
      * 异常码一共为5位，规范如下：
      * 0为成功，无异常
