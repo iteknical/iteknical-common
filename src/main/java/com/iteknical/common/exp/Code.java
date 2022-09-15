@@ -28,7 +28,7 @@ public interface Code {
     /** 未预期错误 */
     int                               UNEXPECTED_ERROR  = 90000;
 
-    Map<Locale, Map<Integer, String>> TRANSLATION_MAP   = ImmutableMap.<Locale, Map<Integer, String>>builder()
+    Map<Locale, Map<Integer, String>> CODE_TRANSLATION  = ImmutableMap.<Locale, Map<Integer, String>>builder()
         .put(Locale.SIMPLIFIED_CHINESE, ImmutableMap.<Integer, String>builder()
             .put(10101, "参数非法")
             .put(10201, "上锁错误")
