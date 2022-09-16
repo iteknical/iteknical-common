@@ -8,6 +8,10 @@ package com.iteknical.common.exp;
 public class IteknicalException extends RuntimeException {
     private final int code;
 
+    public IteknicalException(int code) {
+        this.code = code;
+    }
+
     public IteknicalException(int code, String message) {
         super(message);
         this.code = code;
