@@ -8,7 +8,7 @@ import com.google.common.collect.ImmutableMap;
 /**
  * 异常码
  */
-public interface Code {
+public class Code {
     /*
      * 异常码一共为5位，规范如下：
      * 0为成功，无异常
@@ -18,22 +18,22 @@ public interface Code {
      */
 
     /** 成功 */
-    int                               SUCCESS           = 0;
+    public static final int                               SUCCESS           = 0;
 
     /** 入参无效 */
-    int                               PARAMETER_INVALID = 10101;
+    public static final int                               PARAMETER_INVALID = 10101;
     /** 上锁错误 */
-    int                               LOCK_FAILED       = 10201;
+    public static final int                               LOCK_FAILED       = 10201;
 
     /** 未预期错误 */
-    int                               UNEXPECTED_ERROR  = 90000;
+    public static final int                               UNEXPECTED_ERROR  = 90000;
 
-    Map<Locale, Map<Integer, String>> CODE_TRANSLATION  = ImmutableMap.<Locale, Map<Integer, String>>builder()
-        .put(Locale.SIMPLIFIED_CHINESE, ImmutableMap.<Integer, String>builder()
-            .put(10101, "参数非法")
-            .put(10201, "上锁错误")
-            .put(90000, "系统异常")
-            .build())
-        .build();
-
+    public static final Map<Locale, Map<Integer, String>> CODE_TRANSLATION  =
+        ImmutableMap.<Locale, Map<Integer, String>>builder()
+            .put(Locale.SIMPLIFIED_CHINESE, ImmutableMap.<Integer, String>builder()
+                .put(10101, "参数非法")
+                .put(10201, "上锁错误")
+                .put(90000, "系统异常")
+                .build())
+            .build();
 }
