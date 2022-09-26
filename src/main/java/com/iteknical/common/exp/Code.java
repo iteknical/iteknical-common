@@ -24,6 +24,8 @@ public class Code {
     public static final int                               PARAMETER_INVALID = 10101;
     /** 上锁错误 */
     public static final int                               LOCK_FAILED       = 10201;
+    /** 无授权 */
+    public static final int                               NO_AUTHORIZATION  = 10301;
 
     /** 未预期错误 */
     public static final int                               UNEXPECTED_ERROR  = 90000;
