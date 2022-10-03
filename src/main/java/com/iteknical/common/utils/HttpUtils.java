@@ -73,9 +73,9 @@ public class HttpUtils {
         // .setConnectionRequestTimeout(5000).build();
 
         RequestConfig defaultRequestConfig = RequestConfig.custom()
-            .setSocketTimeout(10000)
-            .setConnectTimeout(10000)
-            .setConnectionRequestTimeout(10000)
+            .setSocketTimeout(15000)
+            .setConnectTimeout(15000)
+            .setConnectionRequestTimeout(15000)
             .build();
 
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
