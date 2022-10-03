@@ -72,14 +72,19 @@ public class HttpUtils {
         // RequestConfig.custom().setProxy(proxy).setSocketTimeout(5000).setConnectTimeout(5000)
         // .setConnectionRequestTimeout(5000).build();
 
-        RequestConfig defaultRequestConfig = RequestConfig.custom().setSocketTimeout(10000).setConnectTimeout(10000)
-            .setConnectionRequestTimeout(10000).build();
+        RequestConfig defaultRequestConfig = RequestConfig.custom()
+            .setSocketTimeout(10000)
+            .setConnectTimeout(10000)
+            .setConnectionRequestTimeout(10000)
+            .build();
 
         PoolingHttpClientConnectionManager cm = new PoolingHttpClientConnectionManager(registry);
         cm.setMaxTotal(500);
         cm.setDefaultMaxPerRoute(250);
-        HTTP_CLIENT =
-            HttpClients.custom().setConnectionManager(cm).setDefaultRequestConfig(defaultRequestConfig).build();
+        HTTP_CLIENT = HttpClients.custom()
+            .setConnectionManager(cm)
+            .setDefaultRequestConfig(defaultRequestConfig)
+            .build();
     }
 
     /**
@@ -133,7 +138,7 @@ public class HttpUtils {
             for (String key : bodies.keySet()) {
                 nameValuePairList.add(new BasicNameValuePair(key, bodies.get(key)));
             }
-            UrlEncodedFormEntity formEntity = null;
+            UrlEncodedFormEntity formEntity;
             try {
                 formEntity = new UrlEncodedFormEntity(nameValuePairList, ENCODE);
             } catch (UnsupportedEncodingException e) {
@@ -267,5 +272,4 @@ public class HttpUtils {
     public static String checkResponseAndGetResult(HttpResponse httpResponse) {
         return checkResponseAndGetResult(httpResponse, ImmutableList.of(HttpStatus.SC_OK));
     }
-
 }
