@@ -46,6 +46,12 @@
             <artifactId>commons-io</artifactId>
             <version>2.7</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>1.8</version>
+        </dependency>
 		<!-- apache-common end -->
 
 		<!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
