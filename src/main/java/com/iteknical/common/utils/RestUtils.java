@@ -11,14 +11,6 @@ import com.google.common.collect.Maps;
  * @author Tony
  */
 public class RestUtils {
-
-    @Deprecated
-    public static String doGet(String host, String path, Map<String, String> headers,
-        Map<String, String> queries) {
-        HttpResponse httpResponse = HttpUtils.doGet(host, path, headers, queries);
-        return HttpUtils.checkResponseAndGetResult(httpResponse);
-    }
-
     public static String doPost(String host, String path, Map<String, String> headers,
         Map<String, String> queries, String body) {
         if (MapUtils.isEmpty(headers)) {

@@ -22,9 +22,8 @@ public class Code {
 
     /** 入参无效 */
     public static final int                               PARAMETER_INVALID = 10101;
-    /** 上锁错误 */
-    public static final int                               LOCK_FAILED       = 10201;
-    /** 无授权 */
+
+    /** 没有授权 */
     public static final int                               NO_AUTHORIZATION  = 10301;
 
     /** 未预期错误 */
@@ -34,7 +33,7 @@ public class Code {
         ImmutableMap.<Locale, Map<Integer, String>>builder()
             .put(Locale.SIMPLIFIED_CHINESE, ImmutableMap.<Integer, String>builder()
                 .put(PARAMETER_INVALID, "参数非法")
-                .put(LOCK_FAILED, "上锁错误")
+                .put(NO_AUTHORIZATION, "没有授权")
                 .put(UNEXPECTED_ERROR, "系统异常")
                 .build())
             .build();
