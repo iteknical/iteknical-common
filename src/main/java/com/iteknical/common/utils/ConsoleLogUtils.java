@@ -21,6 +21,6 @@ public class ConsoleLogUtils {
     }
 
     private static void log(String level, String line) {
-        System.out.println(DateUtils.toString(new Date()) + " " + "[" + level + "] " + line);
+        System.out.println(DateUtils.toString(new Date()) + " " + level + " " + line);
     }
 }
