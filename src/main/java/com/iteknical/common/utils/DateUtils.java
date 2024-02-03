@@ -19,6 +19,9 @@ public class DateUtils {
     }
 
     public static String toString(Date date) {
+        if (date == null) {
+            return null;
+        }
         return DATE_TIME_FORMATTER.print(new DateTime(date));
     }
 }
