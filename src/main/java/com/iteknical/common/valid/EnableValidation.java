@@ -8,6 +8,6 @@ import java.lang.annotation.Target;
 /**
  * @author wenyuan.ww
  */
-@Target(ElementType.PARAMETER)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ParamValidation {}
+public @interface EnableValidation {}
