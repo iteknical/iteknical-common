@@ -12,8 +12,8 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.Map;
 
-import javax.net.ssl.SSLContext;
-
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Lists;
 import org.apache.commons.collections4.MapUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntity;
@@ -29,41 +29,29 @@ import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.TrustStrategy;
 import org.apache.http.entity.ByteArrayEntity;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.util.EntityUtils;
-
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
 
 /**
  * @author Tony
  */
 public class HttpUtils {
-    /** urlEncode编码 */
-    private static final String              ENCODE = "utf-8";
+    /**
+     * urlEncode编码
+     */
+    private static final String ENCODE = "utf-8";
 
     private static final CloseableHttpClient HTTP_CLIENT;
 
     static {
-        SSLConnectionSocketFactory socketFactory = null;
-        try {
-            // 信任所有
-            SSLContext sslContext = new SSLContextBuilder().loadTrustMaterial(null,
-                (TrustStrategy)(chain, authType) -> true).build();
-            socketFactory = new SSLConnectionSocketFactory(sslContext);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         Registry<ConnectionSocketFactory> registry = RegistryBuilder.<ConnectionSocketFactory>create()
             .register("http", PlainConnectionSocketFactory.getSocketFactory())
-            .register("https", socketFactory != null ? socketFactory : PlainConnectionSocketFactory.getSocketFactory())
+            .register("https", SSLConnectionSocketFactory.getSocketFactory())
             .build();
 
         // for proxy debug
