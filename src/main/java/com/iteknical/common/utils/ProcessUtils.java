@@ -269,7 +269,10 @@ public class ProcessUtils {
 
     // ================= 通用 =================
 
-    private static int currentPid() {
+    /**
+     * 当前JVM进程自身的pid（Java 8下经RuntimeMXBean获取）
+     */
+    public static int currentPid() {
         // Java 8下获取自身pid："pid@host"
         String name = ManagementFactory.getRuntimeMXBean().getName();
         return Integer.parseInt(name.substring(0, name.indexOf('@')));
